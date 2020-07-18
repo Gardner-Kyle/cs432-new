@@ -56,7 +56,12 @@ public:
         str += "Encode Message\n";
 
         // The decrypt pseudocode
-        str += "insert the decryption pseudocode\n";
+        str += "declare constants and variables\n";
+        str += "create alphabet\n";
+        str += "create map\n"
+        str += "separate ciphertext into 5-character chunks\n";
+        str += "compare chunks with cipher codes\n";
+        str += "get same index from alphabet.";
 
         return str;
     }
@@ -116,23 +121,18 @@ public:
         for (int i = 0; i < 62; i++){
             codex[alphabet[i]] = code[i];
         }
-        
+
         //loop through ciphertext and convert to plaintext
-        for(int i = 0; i < (plainText.length()-6); i=i+6)
-            if(i == plainText.length()-5) {
-                temp = plainText.substr(i, i+5);
-                if (pair->second == temp){
-                    message += pair->first;
-                }
-                i = i+5;
+        for(int i = 0; i < (plainText.length()); i=i+6) {
+           
+                temp = plainText.substr(i, 5);
+            
+            for (int j = 0; j < 62; j++){
+                    if(temp == code[j]) {
+                        message += alphabet[j];
+                    }
             }
-        else
-            {
-                temp = plainText.substr(i, i+5);
-                cout << temp;
-                if(pair->second == temp) {
-                    message += pair->first;
-            }
+
 
         }
         plainText = message;
